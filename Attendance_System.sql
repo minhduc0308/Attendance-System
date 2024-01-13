@@ -113,20 +113,23 @@ CREATE TABLE IF NOT EXISTS `mydb9`.`Students` (
   `Address` VARCHAR(45) NULL,
   `DOB` DATE NULL,
   `TrainingDId` INT NULL,
+  `ParentId2` INT,
   PRIMARY KEY (`idStudents`),
   INDEX `ClassId_idx` (`ClassId` ASC) VISIBLE,
   INDEX `TraininDId_idx` (`TrainingDId` ASC) VISIBLE,
-  CONSTRAINT `ClassId4`
-    FOREIGN KEY (`ClassId`)
-    REFERENCES `mydb9`.`Class` (`idClass`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `ParentId2_idx` (`ParentId2` ASC) VISIBLE,
   CONSTRAINT `TraininDId`
     FOREIGN KEY (`TrainingDId`)
     REFERENCES `mydb9`.`TrainingDepartment` (`idTrainingDepartment`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ParentId`
+    FOREIGN KEY (`ParentId2`)
+    REFERENCES `mydb9`.`Parent` (`idParent`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+) ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -207,15 +210,8 @@ CREATE TABLE IF NOT EXISTS `mydb9`.`Parent` (
   `Username` VARCHAR(45) NULL,
   `Job` VARCHAR(45) NULL,
   `PlaceOfWork` VARCHAR(45) NULL,
-  `Studentid` INT NULL,
-  PRIMARY KEY (`idParent`),
-  INDEX `StudentId_idx` (`Studentid` ASC) VISIBLE,
-  CONSTRAINT `StudentId6`
-    FOREIGN KEY (`Studentid`)
-    REFERENCES `mydb9`.`Students` (`idStudents`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  PRIMARY KEY (`idParent`)
+) ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -396,12 +392,16 @@ INSERT INTO `mydb9`.`Lecture Asignment` (`LectureId`, `ClassId`)
 VALUES 
   (1, 1),
   (2, 2);
-
--- Thêm dữ liệu cho bảng `Students`
-INSERT INTO `mydb9`.`Students` (`Email`, `ClassId`, `PhoneNumber`, `Address`, `DOB`, `TrainingDId`)
+-- Thêm dữ liệu cho bảng `Parent`
+INSERT INTO `mydb9`.`Parent` (`idParent`,`Name`, `Address`, `Email`, `Pass`, `Username`, `Job`, `PlaceOfWork`)
 VALUES 
-  ('student1@gmail.com', 1, 0376409987, '456 Oak St', '2000-01-01', 1),
-  ('student2@gmail.com', 2, 0376409125, '789 Pine St', '1999-05-15', 2);
+  (1, 'ParentA', '789 Pine St', 'parent1@gmail.com', 'password', 'parent_user', 'Parent Job', 'Workplace'),
+  (2, 'ParentB', '456 Oak St', 'parent2@gmail.com', 'password', 'parent_user2', 'Parent Job', 'Workplace');
+-- Thêm dữ liệu cho bảng `Students`
+INSERT INTO `mydb9`.`Students` (`idStudents`, `Email`, `ClassId`, `PhoneNumber`, `Address`, `DOB`, `TrainingDId`, `ParentId2`)
+VALUES 
+  (1, 'student5@gmail.com', 1, 0376409962, '36 Oak St', '2000-01-02', 1, 1),
+  (2, 'student5@gmail.com', 2, 0376409136, '89 Pine St', '1999-05-05', 2, 2);
 
 -- Thêm dữ liệu cho bảng `Semester`
 INSERT INTO `mydb9`.`Semester` (`Name`)
@@ -421,11 +421,7 @@ VALUES
   (1, 1, 'Good lecture!', '2024-02-15'),
   (2, 2, 'Very informative!', '2024-03-10');
 
--- Thêm dữ liệu cho bảng `Parent`
-INSERT INTO `mydb9`.`Parent` (`Name`, `Address`, `Email`, `Pass`, `Username`, `Job`, `PlaceOfWork`, `Studentid`)
-VALUES 
-  ('ParentA', '789 Pine St', 'parent1@gmail.com', 'password', 'parent_user', 'Parent Job', 'Workplace', 1),
-  ('ParentB', '456 Oak St', 'parent2@gmail.com', 'password', 'parent_user2', 'Parent Job', 'Workplace', 2);
+
 
 -- Thêm dữ liệu cho bảng `Notice`
 INSERT INTO `mydb9`.`Notice` (`Status`, `StudentId`, `LectureId`, `ParentId`, `trainingDId`, `Date`, `Content`)
