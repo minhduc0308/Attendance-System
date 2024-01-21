@@ -400,7 +400,7 @@ VALUES
 -- Thêm dữ liệu cho bảng `Students`
 INSERT INTO `mydb9`.`Students` (`idStudents`, `Email`, `ClassId`, `PhoneNumber`, `Address`, `DOB`, `TrainingDId`, `ParentId2`)
 VALUES 
-  (1, 'student5@gmail.com', 1, 0376409962, '36 Oak St', '2000-01-02', 1, 1),
+  (1, 'trunghieu2003hhh@gmail.com', 1, 0376409962, '36 Oak St', '2000-01-02', 1, 1),
   (2, 'student5@gmail.com', 2, 0376409136, '89 Pine St', '1999-05-05', 2, 2);
 
 -- Thêm dữ liệu cho bảng `Semester`
