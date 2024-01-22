@@ -14,7 +14,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.GooglePojo;
 import model.Student;
 
 /**
@@ -97,7 +96,7 @@ public class LoginGoogle extends HttpServlet {
                 request.setAttribute("phoneNumber", student.getPhoneNumber());
                 request.setAttribute("address", student.getAddress());
                 request.setAttribute("dob", student.getDOB());
-                RequestDispatcher dis = request.getRequestDispatcher("register.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
                 dis.forward(request, response);
             }
         }
