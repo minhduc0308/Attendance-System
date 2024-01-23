@@ -458,3 +458,4 @@ INSERT INTO `mydb9`.`Admin` (`Email`)
 VALUES 
   ('admin@gmail.com'),
   ('admin2@gmail.com');
+ALTER TABLE mydb9.parent ADD COLUMN otp_sent BOOLEAN DEFAULT FALSE;
