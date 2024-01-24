@@ -4,6 +4,7 @@
  */
 package dal;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import model.Student;
 import java.sql.Connection;
@@ -146,7 +147,75 @@ public class DAO extends DBContext {
         }
         return null;
     }
+    public Parent checkPaForgotPassword(String userName, String email) {
+        String sql = "select * from mydb9.parent\n"
+                + "where Username = ? and Email = ?;";
+        try {
+            PreparedStatement ps = conn.prepareCall(sql);
+            ps.setString(1, userName);
+            ps.setString(2, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Parent pa = new Parent(new BigInteger(rs.getString("idParent")),
+                        rs.getString("Name"),
+                        rs.getString("Address"),
+                        rs.getString("Email"),
+                        rs.getString("Pass"),
+                        rs.getString("Username"),
+                        rs.getString("Job"),
+                        rs.getString("PlaceOfWork"));
+                return pa;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+     public void updateOTPSentStatus(String username, boolean otpSent) {
+    String sql = "UPDATE mydb9.parent SET otp_sent = ? WHERE Username = ?";
 
+    try {
+        PreparedStatement ps = conn.prepareCall(sql);
+        ps.setBoolean(1, otpSent);
+        ps.setString(2, username);
+        ps.executeUpdate();
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+}
+public void updatePassword(String username, String newPassword, BigInteger idParent) {
+        String sql = "UPDATE mydb9.parent SET Pass = ? WHERE idParent = ? and Username = ?;";
+
+        try{
+            PreparedStatement preparedStatement = conn.prepareCall(sql);
+            preparedStatement.setString(1, newPassword);
+            preparedStatement.setBigDecimal(2, new BigDecimal(idParent));
+            preparedStatement.setString(3, username);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Xử lý ngoại lệ tùy theo yêu cầu của bạn, ví dụ: logging hoặc throwing exception
+        }
+    }
+public BigInteger getIdParentByUsername(String username) {
+        String sql = "SELECT idParent FROM mydb9.parent WHERE Username = ?";
+        BigInteger idParent = null;
+
+        try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                idParent = new BigInteger(resultSet.getString("idParent"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Xử lý ngoại lệ tùy theo yêu cầu của bạn
+        }
+
+        return idParent;
+    }
     public List<Student> getStd() {
         return std;
     }
@@ -181,14 +250,27 @@ public class DAO extends DBContext {
 //        for (Parent pa : d.getPa()) {
 //            System.out.println(pa);
 //        }
-       String user = "parent_user";
-       String pass = "password";
-       Parent rs = d.checkPa(user, pass);
-       if(rs != null){
-           System.out.println("ID: " + rs.getId());
-           System.out.println(rs);
-       }else{
-           System.out.println("not found");
-       }
+//       String user = "parent_user";
+//       String pass = "password";
+//       Parent rs = d.checkPa(user, pass);
+//       if(rs != null){
+//           System.out.println("ID: " + rs.getId());
+//           System.out.println(rs);
+//       }else{
+//           System.out.println("not found");
+//       }
+//         String testUsername = "";
+//        String testNewPassword = "new_password";
+//        BigInteger testIdParent = new BigInteger("12345"); // Thay đổi giá trị theo idParent thực tế
+//
+//        try {
+//            d.updatePassword(testUsername, testNewPassword, testIdParent);
+//            System.out.println("Password updated successfully!");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("Failed to update password. Error: " + e.getMessage());
+//        }
+       
+        System.out.println(d.getIdParentByUsername("parent_user"));
     }
 }

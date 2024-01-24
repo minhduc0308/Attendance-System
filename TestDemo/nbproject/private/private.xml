@@ -5,16 +5,28 @@
         <group>
             <file>file:/D:/java%20web/TestDemo/src/java/dal/GoogleUtils.java</file>
             <file>file:/D:/java%20web/TestDemo/web/index.jsp</file>
+            <file>file:/D:/java%20web/TestDemo/src/java/controller/updatePassword.java</file>
+            <file>file:/D:/java%20web/TestDemo/web/ListStudent.jsp</file>
+            <file>file:/D:/java%20web/TestDemo/web/index.html</file>
+            <file>file:/D:/java%20web/TestDemo/src/java/controller/ListStudent.java</file>
+            <file>file:/D:/java%20web/TestDemo/src/java/model/Email.java</file>
+            <file>file:/D:/java%20web/TestDemo/src/java/model/EmailUtils.java</file>
+            <file>file:/D:/java%20web/TestDemo/src/java/model/Parent.java</file>
+            <file>file:/D:/java%20web/TestDemo/web/META-INF/context.xml</file>
+            <file>file:/D:/java%20web/TestDemo/web/verifyOTP.jsp</file>
             <file>file:/D:/java%20web/TestDemo/src/java/IConstants/Constants.java</file>
             <file>file:/D:/java%20web/TestDemo/web/login.jsp</file>
             <file>file:/D:/java%20web/TestDemo/src/java/dal/DBContext.java</file>
-            <file>file:/D:/java%20web/TestDemo/web/index.html</file>
+            <file>file:/D:/java%20web/TestDemo/src/java/controller/ForgotPasswordControl.java</file>
             <file>file:/D:/java%20web/TestDemo/src/java/model/Student.java</file>
-            <file>file:/D:/java%20web/TestDemo/src/java/model/GooglePojo.java</file>
+            <file>file:/D:/java%20web/TestDemo/web/updatePassword.jsp</file>
+            <file>file:/D:/java%20web/TestDemo/web/ListParent.jsp</file>
             <file>file:/D:/java%20web/TestDemo/src/java/controller/LoginGoogle.java</file>
             <file>file:/D:/java%20web/TestDemo/src/java/dal/DAO.java</file>
-            <file>file:/D:/java%20web/TestDemo/src/java/model/Parent.java</file>
             <file>file:/D:/java%20web/TestDemo/src/java/controller/LoginAccount.java</file>
+            <file>file:/D:/java%20web/TestDemo/src/java/controller/ListParent.java</file>
+            <file>file:/D:/java%20web/TestDemo/web/forgotPassword.jsp</file>
+            <file>file:/D:/java%20web/TestDemo/src/java/controller/verifyOTP.java</file>
         </group>
     </open-files>
 </project-private>

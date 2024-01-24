@@ -23,5 +23,9 @@
                 <input type="submit" value="Login"/><br/>
             </form>
         </div>
+        <div>
+            <input type="checkbox" name="rem"/> Remember password
+            <a href="forgotPassword.jsp">Forgot password?</a>
+        </div>
     </body>
 </html>
