@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .attended {
+            color: green;
+        }
+
+        .not-attended {
+            color: red;
+        }
+    </style>
+    <title>Activities Schedule</title>
+</head>
+<body>
+
+<h2>Activities for hieutthe176380 (Trần Trung Hiếu)</h2>
+
+<p>Note: These activities do not include extra-curriculum activities, such as club activities ...</p>
+<p>Chú thích: Các hoạt động trong bảng dưới không bao gồm hoạt động ngoại khóa, ví dụ như hoạt động câu lạc bộ ...</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>YEAR</th>
+            <th>2024</th>
+        </tr>
+        <tr>
+            <th>WEEK</th>
+            <th>15/01 To 21/01</th>
+        </tr>
+        <tr>
+            <th>MON</th>
+            <th>TUE</th>
+            <th>WED</th>
+            <th>THU</th>
+            <th>FRI</th>
+            <th>SAT</th>
+            <th>SUN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Slot 1 -->
+        <tr>
+            <td>Slot 1</td>
+            <td id="slot1">-</td>
+            <td id="slot2">-</td>
+            <td id="slot3">-</td>
+            <td id="slot4">-</td>
+            <td id="slot5">-</td>
+            <td id="slot6">-</td>
+        </tr>
+        <!-- Slot 2 -->
+        <tr>
+            <td>Slot 2</td>
+            <td id="slot7">-</td>
+            <td id="slot8">-</td>
+            <td id="slot9">-</td>
+            <td id="slot10">-</td>
+            <td id="slot11">-</td>
+            <td id="slot12">-</td>
+        </tr>
+        <!-- Add more rows for different slots -->
+    </tbody>
+</table>
+
+<script>
+    function updateAttendanceStatus(studentId, isChecked) {
+        const statusElement = document.getElementById(studentId);
+        if (statusElement) {
+            statusElement.textContent = isChecked ? 'attended' : 'not-attended';
+            statusElement.className = isChecked ? 'attended' : 'not-attended';
+        }
+    }
+</script>
+
+</body>
+</html>

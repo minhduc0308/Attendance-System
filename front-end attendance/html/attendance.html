@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" href="/css/attendance.css">
+</head>
+<body>
+    <div class="page">
+        <div class="header-page">
+            <div class="attendance-area"><h1 class="attendance">Attendance</h1></div>
+            <div class="logout-area"><a href="login.html" class="logout">Log Out</a></div>
+        </div>
+        <div class="session">
+            <div class="session-title">SESSION:</div>
+            <select class="session-select">
+                <option class="session-title">SUMMER2023</option>
+                <option class="session-title">AUTUMN2023</option>
+            </select>
+        </div>
+        <div class="classlist-area">
+            <div class="classcard" data-class="SE1760">SE1760</div>
+            <div class="classcard" data-class="SE1702">SE1702</div>
+        </div>
+        <div class="classdetails-area">
+            <div class="classdetails">
+                <div class="code-area">CS101</div>
+                <div class="title-area">INTRODUCTION TO SCIENTIFIC COMPUTING</div>
+                <div class="ondate-area">
+                    <input type="date">
+                </div>
+            </div>
+        </div>
+        <div class="studentlist-area">
+            <div class="studenttlist"><label>STUDENT LIST</label></div>
+            <div class="studentdetails" data-class="SE1760">
+                <div class="slno-area">001</div>
+                <div class="rollno-area">CSB21001</div>
+                <div class="name-area">PRAKASH KUMAR CHAUHAN</div>
+                <div class="checkbox-area">
+                    <input type="checkbox" id="checkbox1">
+                </div>
+            </div>
+            <!-- Thêm sinh viên khác cho lớp SE1760 -->
+            <div class="studentdetails" data-class="SE1760">
+                <div class="slno-area">002</div>
+                <div class="rollno-area">CSB21002</div>
+                <div class="name-area">ANOTHER STUDENT</div>
+                <div class="checkbox-area">
+                    <input type="checkbox" id="checkbox2">
+                </div>
+            </div>
+            <!-- Thêm sinh viên khác cho lớp SE1760 -->
+            <div class="studentdetails" data-class="SE1760">
+                <div class="slno-area">003</div>
+                <div class="rollno-area">CSB21003</div>
+                <div class="name-area">YET ANOTHER STUDENT</div>
+                <div class="checkbox-area">
+                    <input type="checkbox" id="checkbox3">
+                </div>
+            </div>
+            <!-- Thêm sinh viên cho lớp SE1702 -->
+            <div class="studentdetails" data-class="SE1702">
+                <div class="slno-area">001</div>
+                <div class="rollno-area">CSB21004</div>
+                <div class="name-area">STUDENT 4</div>
+                <div class="checkbox-area">
+                    <input type="checkbox" id="checkbox4">
+                </div>
+            </div>
+            <!-- Thêm sinh viên cho lớp SE1702 -->
+            <div class="studentdetails" data-class="SE1702">
+                <div class="slno-area">002</div>
+                <div class="rollno-area">CSB21005</div>
+                <div class="name-area">STUDENT 5</div>
+                <div class="checkbox-area">
+                    <input type="checkbox" id="checkbox5">
+                </div>
+            </div>
+            <!-- Thêm sinh viên cho lớp SE1702 -->
+            <div class="studentdetails" data-class="SE1702">
+                <div class="slno-area">003</div>
+                <div class="rollno-area">CSB21006</div>
+                <div class="name-area">STUDENT 6</div>
+                <div class="checkbox-area">
+                    <input type="checkbox" id="checkbox6">
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+            <a href="timtable.html" class="submit-btn" onclick="updateTimetableStatus()">SUBMIT</a>
+        </div>
+    </div>
+    <script src="/js/script.js"></script>
+</body>
+</html>

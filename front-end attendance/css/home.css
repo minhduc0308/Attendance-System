@@ -1,0 +1,167 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #365bd4;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: #fff;
+  margin: 0;
+  font-size: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 20px;
+  background-color: rgb(127, 208, 255);
+}
+
+#home-page {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.notification {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.notification i {
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.badge {
+  background-color: red;
+  color: #fff;
+  border-radius: 60%;
+  padding: 2px 4px;
+  font-size: 12px;
+}
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.language-switch label {
+  margin-right: 5px;
+  color: #fff;
+}
+
+#language-select {
+  padding: 5px;
+}
+
+.user-menu {
+  margin-top: 30px;
+   display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px; /* Adjust the gap as needed */
+}
+
+.user-menu h2 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.user-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-menu li {
+  margin-bottom: 8px;
+}
+
+.user-menu a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.user-menu a:hover {
+  text-decoration: underline;
+}
+
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.contact-info,
+.social-media,
+.payment-options {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.contact-info h2,
+.social-media h2,
+.payment-options h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.contact-info p,
+.social-media a,
+.payment-options p {
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+.social-media a {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-media a:hover {
+  color: #5faae4; /* Twitter blue color */
+}
