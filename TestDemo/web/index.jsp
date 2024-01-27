@@ -15,16 +15,32 @@
         <h1>Index</h1>
          <%
     String id = (request.getAttribute("id") != null) ? request.getAttribute("id").toString() : "";
+    String idLectures = (request.getAttribute("idLectures") != null) ? request.getAttribute("idLectures").toString() : "";
+    String idAdmin = (request.getAttribute("idAdmin") != null) ? request.getAttribute("idAdmin").toString() : "";
     String email = (request.getAttribute("email") != null) ? request.getAttribute("email").toString() : "";
+    String lectureName = (request.getAttribute("lectureName") != null) ? request.getAttribute("lectureName").toString() : "";
     String phoneNumber = (request.getAttribute("phoneNumber") != null) ? request.getAttribute("phoneNumber").toString() : "";
     String address = (request.getAttribute("address") != null) ? request.getAttribute("address").toString() : "";
     String dob = (request.getAttribute("dob") != null) ? request.getAttribute("dob").toString() : "";
+    String dateOfBirth = (request.getAttribute("dateOfBirth") != null) ? request.getAttribute("dateOfBirth").toString() : "";
 
-    out.print("Id: " + id);
-    out.print("<br/>Email: " + email);
-    out.print("<br/>Phone Number: " + phoneNumber);
-    out.print("<br/>Address: " + address);
-    out.print("<br/>Date of Birth: " + dob);
+    if (!idLectures.isEmpty()) {
+        out.print("Id: " + idLectures);
+        out.print("<br/>Email: " + email);
+        out.print("<br/>Lecture Name: " + lectureName);
+        out.print("<br/>Phone Number: " + phoneNumber);
+        out.print("<br/>Address: " + address);
+        out.print("<br/>Date of Birth: " + dateOfBirth);
+    } else if (!idAdmin.isEmpty()) {
+        out.print("Id: " + idAdmin);
+        out.print("<br/>Email: " + email);
+    } else {
+        out.print("Id: " + id);
+        out.print("<br/>Email: " + email);
+        out.print("<br/>Phone Number: " + phoneNumber);
+        out.print("<br/>Address: " + address);
+        out.print("<br/>Date of Birth: " + dob);
+    }
 %>
     </body>
 </html>
