@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.math.BigInteger;
 import java.sql.*;
 
 /**
@@ -11,13 +12,13 @@ import java.sql.*;
  * @author HuyPC
  */
 public class Lecture {
-    private int idLectures;
+    private BigInteger  idLectures;
     private String Email, LectureName;
     private int PhoneNumber;
     private String Address;
     private Date DateOfBirth;
 
-    public Lecture(int idLectures, String Email, String LectureName, int PhoneNumber, String Address, Date DateOfBirth) {
+    public Lecture(BigInteger idLectures, String Email, String LectureName, int PhoneNumber, String Address, Date DateOfBirth) {
         this.idLectures = idLectures;
         this.Email = Email;
         this.LectureName = LectureName;
@@ -26,11 +27,11 @@ public class Lecture {
         this.DateOfBirth = DateOfBirth;
     }
 
-    public int getIdLectures() {
+    public BigInteger getIdLectures() {
         return idLectures;
     }
 
-    public void setIdLectures(int idLectures) {
+    public void setIdLectures(BigInteger idLectures) {
         this.idLectures = idLectures;
     }
 
