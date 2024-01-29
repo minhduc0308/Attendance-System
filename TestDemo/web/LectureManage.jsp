@@ -16,33 +16,34 @@
     String action = request.getParameter("action");
 
     if (action != null) {
-        if (action.equals("add")) {
-            // Handle add form submission
-            int id = Integer.parseInt(request.getParameter("id"));
-            String email = request.getParameter("email");
-            String lectureName = request.getParameter("lectureName");
-            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
-            String address = request.getParameter("address");
-            Date dob = Date.valueOf(request.getParameter("dob"));
+       if (action.equals("add")) {
+    // Handle add form submission
+    BigInteger id = new BigInteger(request.getParameter("id"));
+    String email = request.getParameter("email");
+    String lectureName = request.getParameter("lectureName");
+    int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+    String address = request.getParameter("address");
+    Date dob = Date.valueOf(request.getParameter("dob"));
 
-            Lecture newLecture = new Lecture(id, email, lectureName, phoneNumber, address, dob);
-            dao.addLectureByPrepared(newLecture);
-        } else if (action.equals("update")) {
-            // Handle update form submission
-            int id = Integer.parseInt(request.getParameter("id"));
-            String email = request.getParameter("email");
-            String lectureName = request.getParameter("lectureName");
-            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
-            String address = request.getParameter("address");
-            Date dob = Date.valueOf(request.getParameter("dob"));
+    Lecture newLecture = new Lecture(id, email, lectureName, phoneNumber, address, dob);
+    dao.addLectureByPrepared(newLecture);
+} else if (action.equals("update")) {
+    // Handle update form submission
+    BigInteger id = new BigInteger(request.getParameter("id"));
+    String email = request.getParameter("email");
+    String lectureName = request.getParameter("lectureName");
+    int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+    String address = request.getParameter("address");
+    Date dob = Date.valueOf(request.getParameter("dob"));
 
-            Lecture updatedLecture = new Lecture(id, email, lectureName, phoneNumber, address, dob);
-            dao.updateLecture(updatedLecture);
-        } else if (action.equals("delete")) {
-            // Handle delete form submission
-            int id = Integer.parseInt(request.getParameter("id"));
-            dao.deleteLecture(id);
-        }
+    Lecture updatedLecture = new Lecture(id, email, lectureName, phoneNumber, address, dob);
+    dao.updateLecture(updatedLecture);
+} else if (action.equals("delete")) {
+    // Handle delete form submission
+    BigInteger id = new BigInteger(request.getParameter("id"));
+    dao.deleteLecture(id);
+}
+
     }
 %>
 
