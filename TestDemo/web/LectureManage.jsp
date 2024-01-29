@@ -3,6 +3,8 @@
 <%@ page import="dal.DAOLecture" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.sql.Date" %>
+<%@ page import="java.math.BigInteger" %>
+
 
 
 <%
