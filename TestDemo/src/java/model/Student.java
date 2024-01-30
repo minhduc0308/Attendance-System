@@ -13,18 +13,22 @@ import java.sql.*;
 public class Student {
     private BigInteger id;
     private String email;
+    private int ClassId;
     private int PhoneNumber;
     private String Address;
     private Date DOB;
-    public Student() {
-    }
+     private int TrainningDId;
+      private int ParentId2;
 
-    public Student(BigInteger id, String email, int PhoneNumber, String Address, Date DOB) {
+    public Student(BigInteger id, String email, int ClassId, int PhoneNumber, String Address, Date DOB, int TrainningDId, int ParentId2) {
         this.id = id;
         this.email = email;
+        this.ClassId = ClassId;
         this.PhoneNumber = PhoneNumber;
         this.Address = Address;
         this.DOB = DOB;
+        this.TrainningDId = TrainningDId;
+        this.ParentId2 = ParentId2;
     }
 
     public BigInteger getId() {
@@ -41,6 +45,14 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getClassId() {
+        return ClassId;
+    }
+
+    public void setClassId(int ClassId) {
+        this.ClassId = ClassId;
     }
 
     public int getPhoneNumber() {
@@ -67,11 +79,28 @@ public class Student {
         this.DOB = DOB;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" + "id=" + id + ", email=" + email + ", PhoneNumber=" + PhoneNumber + ", Address=" + Address + ", DOB=" + DOB + '}';
+    public int getTrainningDId() {
+        return TrainningDId;
     }
 
-    
-    
+    public void setTrainningDId(int TrainningDId) {
+        this.TrainningDId = TrainningDId;
+    }
+
+    public int getParentId2() {
+        return ParentId2;
+    }
+
+    public void setParentId2(int ParentId2) {
+        this.ParentId2 = ParentId2;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id + ", email=" + email + ", ClassId=" + ClassId + ", PhoneNumber=" + PhoneNumber + ", Address=" + Address + ", DOB=" + DOB + ", TrainningDId=" + TrainningDId + ", ParentId2=" + ParentId2 + '}';
+    }
+    public Student() {
+    }
 }
+
+   
