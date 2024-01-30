@@ -9,19 +9,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb22
+-- Schema mydb32
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb22
+-- Schema mydb32
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb22` DEFAULT CHARACTER SET utf8 ;
-USE `mydb22` ;
+CREATE SCHEMA IF NOT EXISTS `mydb32` DEFAULT CHARACTER SET utf8 ;
+USE `mydb32` ;
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Lectures`
+-- Table `mydb32`.`Lectures`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Lectures` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Lectures` (
   `idLectures` INT NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(45) NULL,
   `LectureName` VARCHAR(50) NULL,
@@ -33,9 +33,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`TrainingDepartment`
+-- Table `mydb32`.`TrainingDepartment`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`TrainingDepartment` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`TrainingDepartment` (
   `idTrainingDepartment` INT NOT NULL AUTO_INCREMENT,
   `PhoneNumber` INT NULL,
   `Email` VARCHAR(45) NULL,
@@ -44,65 +44,59 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Subject`
+-- Table `mydb32`.`Subject`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Subject` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Subject` (
   `idSubject` INT NOT NULL AUTO_INCREMENT,
   `SubjectName` VARCHAR(45) NULL,
   `TraingDepartmentId` INT NULL,
   `SemesterId` Int null,
-  `did` int null,
   PRIMARY KEY (`idSubject`),
   INDEX `TrainingDepartment_idx` (`TraingDepartmentId` ASC) VISIBLE,
     INDEX `Semester_idx` (`SemesterId` ASC) VISIBLE,
   CONSTRAINT `TrainingDepartmentId`
     FOREIGN KEY (`TraingDepartmentId`)
-    REFERENCES `mydb22`.`TrainingDepartment` (`idTrainingDepartment`)
+    REFERENCES `mydb32`.`TrainingDepartment` (`idTrainingDepartment`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
 CONSTRAINT `SemesterId`
     FOREIGN KEY (`SemesterId`)
-REFERENCES `mydb22`.`Semester` (`idSemester`)
+REFERENCES `mydb32`.`Semester` (`idSemester`)
 ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `DepartmentId`
-    FOREIGN KEY (`did`)
-    REFERENCES `mydb22`.`Department` (`did`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+ON UPDATE NO ACTION
 )ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Class`
+-- Table `mydb32`.`Class`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Class` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Class` (
   `idClass` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL,
   `StartDate` DATE NULL,
   `EndDate` DATE NULL,
   `TrainingDeapartmentId` INT NULL,
-  `SubjectId` int null,
+  `idSubject` int null,
   PRIMARY KEY (`idClass`),
   INDEX `TrainingDepartmentId_idx` (`TrainingDeapartmentId` ASC) VISIBLE,
-    INDEX `Subject_idx` (`SubjectId` ASC) VISIBLE,
+    INDEX `Subject_idx` (`idSubject` ASC) VISIBLE,
   CONSTRAINT `TrainingDepartmentId9`
     FOREIGN KEY (`TrainingDeapartmentId`)
-    REFERENCES `mydb22`.`TrainingDepartment` (`idTrainingDepartment`)
+    REFERENCES `mydb32`.`TrainingDepartment` (`idTrainingDepartment`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-     CONSTRAINT `SubjectId`
-   FOREIGN KEY (`SubjectId`)
-REFERENCES `mydb22`.`Subject` (`idSubject`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION)
+constraint `Subject0`
+     FOREIGN KEY (`idSubject`)
+  REFERENCES `mydb32`.`Subject` (`idSubject`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Lecture Asignment`
+-- Table `mydb32`.`Lecture Asignment`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Lecture Asignment` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Lecture Asignment` (
   `idLecture Asignment` INT NOT NULL AUTO_INCREMENT,
   `LectureId` INT NULL,
   `ClassId` INT NULL,
@@ -111,21 +105,21 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`Lecture Asignment` (
   INDEX `ClassId_idx` (`ClassId` ASC) VISIBLE,
   CONSTRAINT `LectureId`
     FOREIGN KEY (`LectureId`)
-    REFERENCES `mydb22`.`Lectures` (`idLectures`)
+    REFERENCES `mydb32`.`Lectures` (`idLectures`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `ClassId`
     FOREIGN KEY (`ClassId`)
-    REFERENCES `mydb22`.`Class` (`idClass`)
+    REFERENCES `mydb32`.`Class` (`idClass`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Students`
+-- Table `mydb32`.`Students`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Students` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Students` (
   `idStudents` INT NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(45) NULL,
   `ClassId` INT NULL,
@@ -140,12 +134,12 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`Students` (
   INDEX `ParentId2_idx` (`ParentId2` ASC) VISIBLE,
   CONSTRAINT `TraininDId`
     FOREIGN KEY (`TrainingDId`)
-    REFERENCES `mydb22`.`TrainingDepartment` (`idTrainingDepartment`)
+    REFERENCES `mydb32`.`TrainingDepartment` (`idTrainingDepartment`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `ParentId`
     FOREIGN KEY (`ParentId2`)
-    REFERENCES `mydb22`.`Parent` (`idParent`)
+    REFERENCES `mydb32`.`Parent` (`idParent`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
@@ -153,18 +147,18 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`Students` (
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Semester`
+-- Table `mydb32`.`Semester`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Semester` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Semester` (
   `idSemester` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL,
   PRIMARY KEY (`idSemester`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Department`
+-- Table `mydb32`.`Department`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Department` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Department` (
   `did` INT NOT NULL AUTO_INCREMENT,
   `idSemester` INT NULL,
   `dname` VARCHAR(45) NULL,
@@ -172,15 +166,15 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`Department` (
   INDEX `Semester_idx` (`idSemester` ASC) VISIBLE,
   CONSTRAINT `SemesterId_Department`
     FOREIGN KEY (`idSemester`)
-    REFERENCES `mydb22`.`Semester` (`idSemester`)
+    REFERENCES `mydb32`.`Semester` (`idSemester`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Register`
+-- Table `mydb32`.`Register`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Register` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Register` (
   `idRegister` INT NOT NULL AUTO_INCREMENT,
   `StudentId` INT NULL,
   `SubjectId` INT NULL,
@@ -192,26 +186,26 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`Register` (
   INDEX `Semesterid_idx` (`SemesterId` ASC) VISIBLE,
   CONSTRAINT `Studentid`
     FOREIGN KEY (`StudentId`)
-    REFERENCES `mydb22`.`Students` (`idStudents`)
+    REFERENCES `mydb32`.`Students` (`idStudents`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `subjectid10`
     FOREIGN KEY (`SubjectId`)
-    REFERENCES `mydb22`.`Subject` (`idSubject`)
+    REFERENCES `mydb32`.`Subject` (`idSubject`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Semesterid10`
     FOREIGN KEY (`SemesterId`)
-    REFERENCES `mydb22`.`Semester` (`idSemester`)
+    REFERENCES `mydb32`.`Semester` (`idSemester`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`FeedBack`
+-- Table `mydb32`.`FeedBack`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`FeedBack` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`FeedBack` (
   `idFeedBack` INT NOT NULL AUTO_INCREMENT,
   `StudentId` INT NULL,
   `LectureId` INT NULL,
@@ -222,21 +216,21 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`FeedBack` (
   INDEX `lectureid_idx` (`LectureId` ASC) VISIBLE,
   CONSTRAINT `StudentId5`
     FOREIGN KEY (`StudentId`)
-    REFERENCES `mydb22`.`Students` (`idStudents`)
+    REFERENCES `mydb32`.`Students` (`idStudents`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `lectureid4`
     FOREIGN KEY (`LectureId`)
-    REFERENCES `mydb22`.`Lectures` (`idLectures`)
+    REFERENCES `mydb32`.`Lectures` (`idLectures`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Parent`
+-- Table `mydb32`.`Parent`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Parent` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Parent` (
   `idParent` INT NOT NULL AUTO_INCREMENT,
   `Name` NVARCHAR(45) NULL,
   `Address` VARCHAR(45) NULL,
@@ -250,9 +244,9 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`Parent` (
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Notice`
+-- Table `mydb32`.`Notice`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Notice` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Notice` (
   `idNotice` INT NOT NULL AUTO_INCREMENT,
   `Status` VARCHAR(45) NULL,
   `StudentId` INT NULL,
@@ -268,53 +262,47 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`Notice` (
   INDEX `Training_idx` (`trainingDId` ASC) VISIBLE,
   CONSTRAINT `Student`
     FOREIGN KEY (`StudentId`)
-    REFERENCES `mydb22`.`Students` (`idStudents`)
+    REFERENCES `mydb32`.`Students` (`idStudents`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Lecture`
     FOREIGN KEY (`LectureId`)
-    REFERENCES `mydb22`.`Lectures` (`idLectures`)
+    REFERENCES `mydb32`.`Lectures` (`idLectures`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Parent`
     FOREIGN KEY (`ParentId`)
-    REFERENCES `mydb22`.`Parent` (`idParent`)
+    REFERENCES `mydb32`.`Parent` (`idParent`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Training`
     FOREIGN KEY (`trainingDId`)
-    REFERENCES `mydb22`.`TrainingDepartment` (`idTrainingDepartment`)
+    REFERENCES `mydb32`.`TrainingDepartment` (`idTrainingDepartment`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Room`
+-- Table `mydb32`.`Room`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Room` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Room` (
   `rid` INT NOT NULL AUTO_INCREMENT,
   `rname` VARCHAR(45) NULL,
   PRIMARY KEY (`rid`)
 ) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Room`
+-- Table `mydb32`.`Room`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`TimeSlot` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`TimeSlot` (
   `tid` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(45) NULL,
   PRIMARY KEY (`tid`)
 ) ENGINE = InnoDB;
 -- -----------------------------------------------------
--- Table `mydb22`.`ClassSession`
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Table `mydb22`.`ClassSession`
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Table `mydb22`.`ClassSession`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`ClassSession` (
+-- Table `mydb32`.`ClassSession`
+
+CREATE TABLE IF NOT EXISTS `mydb32`.`ClassSession` (
   `idClassSession` INT NOT NULL AUTO_INCREMENT,
   `LectureId` INT ,
   `ClassId` INT NULL,
@@ -329,22 +317,22 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`ClassSession` (
   INDEX `TimeSlot_idx` (`tid` ASC) VISIBLE, -- Thêm index cho cột `tid`
   CONSTRAINT `Lectu3re`
     FOREIGN KEY (`LectureId`)
-    REFERENCES `mydb22`.`Lectures` (`idLectures`)
+    REFERENCES `mydb32`.`Lectures` (`idLectures`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Class`
     FOREIGN KEY (`ClassId`)
-    REFERENCES `mydb22`.`Class` (`idClass`)
+    REFERENCES `mydb32`.`Class` (`idClass`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Room`
     FOREIGN KEY (`rid`)
-    REFERENCES `mydb22`.`Room` (`rid`)
+    REFERENCES `mydb32`.`Room` (`rid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `TimeSlot` -- Tạo ràng buộc khóa phụ cho cột `tid`
     FOREIGN KEY (`tid`)
-    REFERENCES `mydb22`.`TimeSlot` (`tid`) -- Thay `TimeSlot` bằng tên bảng giáo viên thực tế
+    REFERENCES `mydb32`.`TimeSlot` (`tid`) -- Thay `TimeSlot` bằng tên bảng giáo viên thực tế
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -353,9 +341,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Attendence`
+-- Table `mydb32`.`Attendence`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Attendence` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Attendence` (
   `idAttendence` INT NOT NULL AUTO_INCREMENT,
   `StudentId` INT NULL,
   `ClassSessionid` INT NULL,
@@ -365,21 +353,21 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`Attendence` (
   INDEX `ClassSess_idx` (`ClassSessionid` ASC) VISIBLE,
   CONSTRAINT `Studen5t`
     FOREIGN KEY (`StudentId`)
-    REFERENCES `mydb22`.`Students` (`idStudents`)
+    REFERENCES `mydb32`.`Students` (`idStudents`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `ClassSess`
     FOREIGN KEY (`ClassSessionid`)
-    REFERENCES `mydb22`.`ClassSession` (`idClassSession`)
+    REFERENCES `mydb32`.`ClassSession` (`idClassSession`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Enroll`
+-- Table `mydb32`.`Enroll`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Enroll` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Enroll` (
   `Studentid` INT NOT NULL ,
   `ClassId` INT NOT NULL,
   `EnrollId` INT NOT NULL AUTO_INCREMENT,
@@ -387,21 +375,21 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`Enroll` (
   PRIMARY KEY (`EnrollId`),
   CONSTRAINT `clas7s`
     FOREIGN KEY (`Studentid`)
-    REFERENCES `mydb22`.`Class` (`idClass`)
+    REFERENCES `mydb32`.`Class` (`idClass`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `stude8nt`
     FOREIGN KEY (`ClassId`)
-    REFERENCES `mydb22`.`Students` (`idStudents`)
+    REFERENCES `mydb32`.`Students` (`idStudents`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`SubjectInstructure`
+-- Table `mydb32`.`SubjectInstructure`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`SubjectInstructure` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`SubjectInstructure` (
   `LectureId` INT NOT NULL ,
   `SubjectId` INT NOT NULL,
   `SubjectInstructureId` INT NOT NULL AUTO_INCREMENT,
@@ -409,21 +397,21 @@ CREATE TABLE IF NOT EXISTS `mydb22`.`SubjectInstructure` (
   PRIMARY KEY (`SubjectInstructureId`),
   CONSTRAINT `Lecture09`
     FOREIGN KEY (`LectureId`)
-    REFERENCES `mydb22`.`Lectures` (`idLectures`)
+    REFERENCES `mydb32`.`Lectures` (`idLectures`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Subject`
     FOREIGN KEY (`SubjectId`)
-    REFERENCES `mydb22`.`Subject` (`idSubject`)
+    REFERENCES `mydb32`.`Subject` (`idSubject`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb22`.`Admin`
+-- Table `mydb32`.`Admin`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb22`.`Admin` (
+CREATE TABLE IF NOT EXISTS `mydb32`.`Admin` (
   `idAdmin` INT NOT NULL AUTO_INCREMENT,
   `Email` VARCHAR(45) NULL,
   PRIMARY KEY (`idAdmin`))
@@ -435,61 +423,60 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- Thêm dữ liệu cho bảng `Lectures`
-INSERT INTO `mydb22`.`Lectures` (`Email`, `LectureName`, `PhoneNumber`, `Address`, `DOB`) 
+INSERT INTO `mydb32`.`Lectures` (`Email`, `LectureName`, `PhoneNumber`, `Address`, `DOB`) 
 VALUES 
   ('lecture1@gmail.com', 'John Doe', 0376409623, '123 Main St', '1990-01-01'),
   ('lecture2@gmail.com', 'Jane Smith', 0376409612,'456 Oak St', '1985-05-15'),
   ('lecture3@gmail.com', 'Bob Johnson', 0376409423, '789 Pine St', '1980-10-20');
 
 -- Thêm dữ liệu cho bảng `TrainingDepartment`
-INSERT INTO `mydb22`.`TrainingDepartment` (`PhoneNumber`, `Email`)
+INSERT INTO `mydb32`.`TrainingDepartment` (`PhoneNumber`, `Email`)
 VALUES 
   (0376409345, 'training@gmail.com'),
   (0376409345, 'training2@gmail.com');
 
 -- Thêm dữ liệu cho bảng `Subject`
-INSERT INTO `mydb22`.`Subject` (`SubjectName`, `TraingDepartmentId`)
+INSERT INTO Subject (`SubjectName`, `TraingDepartmentId`)
 VALUES 
-  ('SWP391', 1),
-  ('SWT301', 1),
-  ('SWR302', 2);
+  ('PRJ311', 1), 
+  ('PRO192', 2);
 
 -- Thêm dữ liệu cho bảng `Class`
-INSERT INTO `mydb22`.`Class` (`Name`, `StartDate`, `EndDate`, `TrainingDeapartmentId`)
+INSERT INTO `mydb32`.`Class` (`Name`, `StartDate`, `EndDate`, `TrainingDeapartmentId`,`idSubject`)
 VALUES 
-  ('ClassA', '2024-01-01', '2024-06-30', 1),
-  ('ClassB', '2024-02-01', '2024-07-31', 2);
+  ('ClassA', '2024-01-01', '2024-06-30', 1,1),
+  ('ClassB', '2024-02-01', '2024-07-31', 2,2);
 
 -- Thêm dữ liệu cho bảng `Lecture Asignment`
-INSERT INTO `mydb22`.`Lecture Asignment` (`LectureId`, `ClassId`)
+INSERT INTO `mydb32`.`Lecture Asignment` (`LectureId`, `ClassId`)
 VALUES 
   (1, 1),
   (2, 2);
 -- Thêm dữ liệu cho bảng `Parent`
-INSERT INTO `mydb22`.`Parent` (`idParent`,`Name`, `Address`, `Email`, `Pass`, `Username`, `Job`, `PlaceOfWork`)
+INSERT INTO `mydb32`.`Parent` (`idParent`,`Name`, `Address`, `Email`, `Pass`, `Username`, `Job`, `PlaceOfWork`)
 VALUES 
   (1, 'ParentA', '789 Pine St', 'parent1@gmail.com', 'password', 'parent_user', 'Parent Job', 'Workplace'),
   (2, 'ParentB', '456 Oak St', 'parent2@gmail.com', 'password', 'parent_user2', 'Parent Job', 'Workplace');
 -- Thêm dữ liệu cho bảng `Students`
-INSERT INTO `mydb22`.`Students` (`idStudents`, `Email`, `ClassId`, `PhoneNumber`, `Address`, `DOB`, `TrainingDId`, `ParentId2`)
+INSERT INTO `mydb32`.`Students` (`idStudents`, `Email`, `ClassId`, `PhoneNumber`, `Address`, `DOB`, `TrainingDId`, `ParentId2`)
 VALUES 
   (1, 'trunghieu2003hhh@gmail.com', 1, 0376409962, '36 Oak St', '2000-01-02', 1, 1),
   (2, 'student5@gmail.com', 2, 0376409136, '89 Pine St', '1999-05-05', 2, 2);
 
 -- Thêm dữ liệu cho bảng `Semester`
-INSERT INTO `mydb22`.`Semester` (`Name`)
+INSERT INTO `mydb32`.`Semester` (`Name`)
 VALUES 
   ('Spring 2024'),
   ('Fall 2024');
 
 -- Thêm dữ liệu cho bảng `Register`
-INSERT INTO `mydb22`.`Register` (`StudentId`, `SubjectId`, `SemesterId`, `Grade`)
+INSERT INTO `mydb32`.`Register` (`StudentId`, `SubjectId`, `SemesterId`, `Grade`)
 VALUES 
   (1, 1, 1, 85.5),
   (2, 2, 2, 90.0);
 
 -- Thêm dữ liệu cho bảng `FeedBack`
-INSERT INTO `mydb22`.`FeedBack` (`StudentId`, `LectureId`, `Content`, `Date`)
+INSERT INTO `mydb32`.`FeedBack` (`StudentId`, `LectureId`, `Content`, `Date`)
 VALUES 
   (1, 1, 'Good lecture!', '2024-02-15'),
   (2, 2, 'Very informative!', '2024-03-10');
@@ -497,74 +484,79 @@ VALUES
 
 
 -- Thêm dữ liệu cho bảng `Notice`
-INSERT INTO `mydb22`.`Notice` (`Status`, `StudentId`, `LectureId`, `ParentId`, `trainingDId`, `Date`, `Content`)
+INSERT INTO `mydb32`.`Notice` (`Status`, `StudentId`, `LectureId`, `ParentId`, `trainingDId`, `Date`, `Content`)
 VALUES 
   ('Published', 1, 1, 1, 1, '2024-03-01', 'Important notice about upcoming events.'),
   ('Draft', 2, 2, 2, 2, '2024-03-05', 'Upcoming parent-teacher meeting.');
 
 -- Thêm dữ liệu cho bảng `ClassSession`
-INSERT INTO `mydb22`.`Room` (`rname`)
+INSERT INTO `mydb32`.`Room` (`rname`)
 VALUES 
   ('RoomA'),
   ('RoomB');
 
 -- Thêm dữ liệu cho bảng `TimeSlot`
-INSERT INTO `mydb22`.`TimeSlot` (`description`)
+INSERT INTO `mydb32`.`TimeSlot` (`description`)
 VALUES 
   ('Morning'),
   ('Afternoon');
 
 -- Thêm dữ liệu cho bảng `ClassSession`
-INSERT INTO `mydb22`.`ClassSession` (`LectureId`, `ClassId`, `rid`, `tid`, `Date`, `Status`)
+INSERT INTO `mydb32`.`ClassSession` (`LectureId`, `ClassId`, `rid`, `tid`, `Date`, `Status`)
 VALUES 
   (1, 1, 1, 1, '2024-02-01', 1),
   (2, 2, 2, 2, '2024-02-05', 0);
 
 -- Thêm dữ liệu cho bảng `Attendence`
-INSERT INTO `mydb22`.`Attendence` (`StudentId`, `ClassSessionid`, `Status`)
+INSERT INTO `mydb32`.`Attendence` (`StudentId`, `ClassSessionid`, `Status`)
 VALUES 
   (1, 1, 'Attend'),
   (2, 2, 'Absent');
 
 -- Thêm dữ liệu cho bảng `Enroll`
-INSERT INTO `mydb22`.`Enroll` (`Studentid`, `ClassId`)
+INSERT INTO `mydb32`.`Enroll` (`Studentid`, `ClassId`)
 VALUES 
   (1, 1),
   (2, 2);
 
 -- Thêm dữ liệu cho bảng `SubjectInstructure`
-INSERT INTO `mydb22`.`SubjectInstructure` (`LectureId`, `SubjectId`)
+INSERT INTO `mydb32`.`SubjectInstructure` (`LectureId`, `SubjectId`)
 VALUES 
   (1, 1),
   (2, 2);
 
 -- Thêm dữ liệu cho bảng `Admin`
-INSERT INTO `mydb22`.`Admin` (`Email`)
+INSERT INTO `mydb32`.`Admin` (`Email`)
 VALUES 
   ('admin@gmail.com'),
   ('admin2@gmail.com');
-ALTER TABLE mydb22.parent ADD COLUMN otp_sent BOOLEAN DEFAULT FALSE;
+ALTER TABLE mydb32.parent ADD COLUMN otp_sent BOOLEAN DEFAULT FALSE;
 SELECT * FROM ClassSession WHERE idClassSession = 1;
 SELECT 
-                ses.idClassSession, 
-                ses.Date, 
-                ses.Status, 
-                lec.idLectures,
-                class.idClass, 
-                class.Name AS ClassName,
-                class.StartDate, 
-                class.EndDate, 
-                r.rid, 
-                r.rname
-            FROM 
-                ClassSession ses
-           INNER JOIN
-                Lectures lec ON lec.idLectures = ses.LectureId
-            INNER JOIN 
-                Class class ON class.idClass = ses.ClassId 
-                INNER JOIN 
-                Room r ON r.rid = ses.rid 
-            WHERE 
-               ses.LectureId = 1;
-                
-               Select ses.idClassSession, r.rid From ClassSession ses INNER JOIN Lectures lec ON lec.idLectures = ses.LectureId INNER JOIN Room r ON r.rid = ses.rid
+    cs.idClassSession,
+    cs.Date,
+    cs.Status,
+    c.idClass,
+    c.Name AS ClassName,
+    c.StartDate, 
+    c.EndDate,
+    s.idSubject,
+    s.SubjectName,
+    r.rid,
+    r.rname, 
+    t.tid,
+    t.description
+FROM
+    ClassSession cs
+        INNER JOIN
+    Class c ON cs.ClassId = c.idClass
+    INNER JOIN 
+    Subject s ON s.idSubject = c.idSubject
+        INNER JOIN
+    Room r ON cs.rid = r.rid
+        INNER JOIN
+    TimeSlot t ON cs.tid = t.tid
+WHERE
+    cs.LectureId = 1;
+    
+Select * From Class c INNER JOIN Subject s ON s.idSubject = c.idSubject
