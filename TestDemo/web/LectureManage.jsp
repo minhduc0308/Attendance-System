@@ -19,6 +19,7 @@
 
     if (action != null) {
        if (action.equals("add")) {
+       try{
     // Handle add form submission
     BigInteger id = new BigInteger(request.getParameter("id"));
     String email = request.getParameter("email");
@@ -29,7 +30,12 @@
 
     Lecture newLecture = new Lecture(id, email, lectureName, phoneNumber, address, dob);
     dao.addLectureByPrepared(newLecture);
+     } catch (NumberFormatException e) {
+                // Handle the exception (e.g., provide an error message or redirect to an error page)
+                e.printStackTrace(); // Print the stack trace for debugging
+            }
 } else if (action.equals("update")) {
+try{
     // Handle update form submission
     BigInteger id = new BigInteger(request.getParameter("id"));
     String email = request.getParameter("email");
@@ -40,9 +46,13 @@
 
     Lecture updatedLecture = new Lecture(id, email, lectureName, phoneNumber, address, dob);
     dao.updateLecture(updatedLecture);
+      } catch (NumberFormatException e) {
+                // Handle the exception (e.g., provide an error message or redirect to an error page)
+                e.printStackTrace(); // Print the stack trace for debugging
+            }
 } else if (action.equals("delete")) {
     // Handle delete form submission
-    BigInteger id = new BigInteger(request.getParameter("id"));
+    int id = Integer.parseInt(request.getParameter("id"));
     dao.deleteLecture(id);
 }
 
@@ -82,7 +92,7 @@
         <td><%= lecture.getAddress() %></td>
         <td><%= lecture.getDateOfBirth() %></td>
         <td>
-            <a href="?action=update&id=<%= lecture.getIdLectures() %>">Update</a>
+       
             <a href="?action=delete&id=<%= lecture.getIdLectures() %>">Delete</a>
         </td>
     </tr>
@@ -109,6 +119,23 @@
     <label>Date of Birth:</label>
     <input type="date" name="dob" required><br>
     <input type="submit" value="Add Lecture">
+</form>
+
+<form action="LectureManage.jsp" method="post">
+    <input type="hidden" name="action" value="update">
+    <label>ID:</label>
+    <input type="text" name="id" required><br>
+    <label>Email:</label>
+    <input type="text" name="email" required><br>
+    <label>Lecture Name:</label>
+    <input type="text" name="lectureName" required><br>
+    <label>Phone Number:</label>
+    <input type="text" name="phoneNumber" required><br>
+    <label>Address:</label>
+    <input type="text" name="address" required><br>
+    <label>Date of Birth:</label>
+    <input type="date" name="dob" required><br>
+    <input type="submit" value="Update Lecture">
 </form>
 
 </body>
