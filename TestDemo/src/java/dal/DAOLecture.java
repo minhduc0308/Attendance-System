@@ -60,7 +60,7 @@ public class DAOLecture extends DBContext {
         return n;
     }
 
-    public int deleteLecture(BigInteger id) {
+    public int deleteLecture(int id) {
         int n = 0;
         String sql = "DELETE FROM Lectures WHERE idLectures=?";
         try (Connection conn = getJDBCConnection();
