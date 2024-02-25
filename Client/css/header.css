@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  background-color: #ff6633;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1; /* Đảm bảo header luôn hiển thị trên menu và slideshow */
+}

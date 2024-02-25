@@ -1,0 +1,97 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  background-color: #ff6633;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1; /* Đảm bảo header luôn hiển thị trên menu và slideshow */
+}
+
+.titile {
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 30px;
+}
+.header img {
+  border-radius: 8px;
+  width: 80px; /* Điều chỉnh chiều rộng của logo */
+  height: 80px; /* Chiều cao tự động điều chỉnh để duy trì tỷ lệ */
+  margin: auto 55px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.menu {
+  width: 200px;
+  background-color: #696969;
+  padding-right: 20px;
+  margin-top: 100px;
+  overflow: hidden;
+  z-index: 1; /* Đảm bảo menu luôn hiển thị dưới header */
+}
+
+.menu ul {
+  list-style: none;
+  text-decoration: none;
+  padding-left: 10px;
+  margin-top: 50px;
+}
+
+.menu-content {
+  padding: 20px;
+  width: 100%;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.menu-content a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.menu-content:hover {
+  background-color: #ff6633;
+  transform: scale(1.1); /* Thu to các thẻ li khi hover */
+}
+
+footer {
+  background-color: #d3d3d3;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  z-index: 1; /* Đảm bảo footer luôn hiển thị trên slideshow */
+}
