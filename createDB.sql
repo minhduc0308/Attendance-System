@@ -1,5 +1,4 @@
-﻿
-Use swp324
+Use swp339
 GO
 
 create table [role] (
@@ -10,6 +9,7 @@ func nvarchar(50)
 create table account(
 userName nvarchar(50) primary key,
 [password] nvarchar(50),
+email nvarchar(50),
 rolid int,
 Foreign key (rolid) references [role](id)
 )
@@ -25,18 +25,18 @@ CREATE TABLE Student (
 Foreign key (userName) references account(username)
 );
 
-CREATE TABLE Lecture (
-    id  nvarchar(50) primary key,
-    [name] NVARCHAR(255),
-	dob date,
-	email nvarchar(50),
-	userName nvarchar(50),
-Foreign key (userName) references account(username)
-);
+	CREATE TABLE Lecture (
+		id  nvarchar(50) primary key,
+		[name] NVARCHAR(255) ,
+		dob date,
+		email nvarchar(50),
+		userName nvarchar(50),
+	Foreign key (userName) references account(username)
+	);
 
 CREATE TABLE Course (
     id INT identity(1,1) PRIMARY KEY,
-    code NVARCHAR(255),
+    code NVARCHAR(255) ,
 	 [description] NVARCHAR(255)
 );
 
@@ -49,16 +49,16 @@ timeEnd date
 );
 CREATE TABLE TimeSlot (
      id INT identity(1,1) PRIMARY KEY,
-    [description] NVARCHAR(255)
+    [description] NVARCHAR(255)  
 );
 
 CREATE TABLE Room (
      id INT identity(1,1) PRIMARY KEY,
-    [name] NVARCHAR(255)
+    [name] NVARCHAR(255) 
 );
 CREATE TABLE [Group] (
     id INT identity(1,1) PRIMARY KEY,
-    [name] NVARCHAR(255),
+    [name] NVARCHAR(255) ,
     courseId INT,
 	termID varchar(50) ,
 	roomID int,
@@ -95,7 +95,7 @@ CREATE TABLE [Session] (
 
 CREATE TABLE Attendance (
     id INT identity(1,1) PRIMARY KEY,
-    [status] NVARCHAR(255),
+    [status] NVARCHAR(255) ,
     [description] NVARCHAR(255),
     student_id nvarchar(50),
     session_id INT,
@@ -123,4 +123,23 @@ FOREIGN KEY (mark_course_id) REFERENCES mark_course(id),
 comment nvarchar(max)
 );
 
+create table Feedback(
+  idFeedBack int identity(1,1) primary key,
+  StudentId nvarchar(50),
+  LectureId nvarchar(50),
+  Content varchar(45),
+  [DATE] date
+  FOREIGN KEY (StudentId) REFERENCES Student(id),
+  foreign key(LectureId) references Lecture(id)
+);
 
+create table Notice(
+	idNotice int identity(1,1) primary key,
+	[Status] varchar(45),
+	StudentId nvarchar(50),
+	LectureId nvarchar(50),
+	[DATE] date,
+	Content varchar(45)
+	FOREIGN KEY (StudentId) REFERENCES Student(id),
+  foreign key(LectureId) references Lecture(id)
+);
