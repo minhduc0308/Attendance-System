@@ -1,21 +1,20 @@
-﻿Use swp324
+Use swp339
 GO
-
 INSERT INTO role (id, func) 
 VALUES
 (1,'ADMIN'),
 (2,'Lecture'),
 (3,'Student')
 
-INSERT INTO account (userName, [password], rolid) 
+INSERT INTO account (userName, [password],email, rolid) 
 VALUES
-('cuonghv','123',3),
-('sonnt','123',2)
-
+('trunghieu','123','trunghieu200hhh3@gmail.com',2),
+('sonnt','123','sonnt@example.com',2),
+('trunghieu2003hhh@gmail.com','123','trunghieu2003hhh@gmail.com',3)
 
 INSERT INTO Student (id, name, dob, email, imgUrl,userName) 
 VALUES
-('he1','Ha Van Cuong', '2003-01-01', 'havancuong@example.com', 'male.png','cuonghv'),
+('he1','Tran Trung Hieu', '2003-01-01', 'trunghieu2003hhh@gmail.com', 'male.png','trunghieu2003hhh@gmail.com'),
 ('he2','Nguyen Thi Dieu Linh', '2003-02-02', 'nguyenthidieulinh@example.com', 'female.png', NULL),
 ('he3','Dinh Gian Han', '2003-03-03', 'dinhhangian@example.com', 'male.png', NULL),
 ('he4','Do Thuy Linh', '2003-04-04', 'dothuylinh@example.com', 'female.png', NULL),
@@ -194,17 +193,22 @@ insert into student_group values
 ('he9',8),
 ('he10',8)
 
+INSERT INTO Feedback (StudentId, LectureId,Content, [DATE]) 
+VALUES
+  ('he1', 1, 'Good lecture!', '2024-02-15'),
+  ('he2', 2, 'Very informative!', '2024-03-10')
+
+INSERT INTO Notice ([Status], StudentId, LectureId, Date, Content)
+VALUES 
+  ('Published', 'he1', 1, '2024-03-01', 'Important notice about upcoming events.'),
+  ('Draft', 'he2', 2, '2024-03-05', 'Upcoming parent-teacher meeting.')
 
 
 
 
 
 
-
-
-
-
-
+  Select*From Feedback
 
 
 
