@@ -5,5 +5,5 @@
 - Students can register for courses and eroll class.
 - Track student progress.
 ## Technology
-This project was used Java is main language to develop web by use jsp and servlet. Used HTML5, CSS3, Javascript for front-end. And MySQL for design database.
+This project was used Java is main language to develop web by use jsp and servlet. Used HTML5, CSS3, Javascript for front-end. And SQL sever for design database.
 Note: This project is in the development phase and subject to change.
